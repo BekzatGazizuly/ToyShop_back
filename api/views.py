@@ -27,6 +27,37 @@ class Toys(APIView):
     def get(self, request):
         return JsonResponse(ToySerializer(Toy.objects.all(), many=True).data, safe=False)
 
+class ToyAdmin(APIView):
+    def post(self, request):
+        category = Category.objects.get(name=request.data['category'])
+        Toy.objects.create(
+            category = category,
+            name = request.data['name'],
+            imageURL = request.data['image'],
+            description = request.data['description'],
+            price = request.data['price']
+        )
+        return JsonResponse({"":"toy Created"}, safe=False)
+    
+    def put(self, request):
+        category = Category.objects.get(name=request.data['category'])
+        toy = Toy.objects.get(id=request.data.get('id'))
+        toy.category = category
+        toy.name = request.data.get('name')
+        toy.description = request.data.get('description')
+        toy.imageURL = request.data.get('image')
+        toy.price = request.data.get('price')
+        toy.save()
+        return JsonResponse({"":"update"}, safe=False)
+
+@api_view(['DELETE'])
+def deleteToy(request, id):
+    toy = Toy.objects.get(id=id)
+    toy.delete()
+    return JsonResponse({"":"removed"}, safe=False)
+
+
+
 @api_view(['GET', 'POST'])
 def order(request):
     if request.method == 'GET':

@@ -14,3 +14,7 @@ class Order(models.Model):
     name = models.CharField(max_length=125)
     phone = models.CharField(max_length=125)
     toy = models.ForeignKey(Toy, on_delete=models.CASCADE, blank=True, null=True)
+
+class Manager(models.Model):
+    username = models.CharField(max_length=2222)
+    password = models.CharField(max_length=2222)

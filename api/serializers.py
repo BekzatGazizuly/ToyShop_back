@@ -18,3 +18,8 @@ class OrderSerializer(serializers.Serializer):
     name = serializers.CharField()
     phone = serializers.CharField()
     toy = ToySerializer()
+
+class Manager(serializers.ModelSerializer):
+    class Meta:
+        model = models.Manager
+        fields = 'id','username'
