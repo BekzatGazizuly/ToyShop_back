@@ -13,3 +13,8 @@ class ToySerializer(serializers.Serializer):
     description = serializers.CharField()
     price = serializers.FloatField()
     category = CategorySerializer()
+
+class OrderSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    phone = serializers.CharField()
+    toy = ToySerializer()

@@ -10,4 +10,7 @@ class Toy(models.Model):
     price = models.FloatField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
 
-
+class Order(models.Model):
+    name = models.CharField(max_length=125)
+    phone = models.CharField(max_length=125)
+    toy = models.ForeignKey(Toy, on_delete=models.CASCADE, blank=True, null=True)

@@ -6,4 +6,6 @@ urlpatterns = [
 
     path('toys/', views.Toys.as_view()),
     path('toys/<int:id>/', views.toy_detailed),
+
+    path('order/', views.order)
 ]
